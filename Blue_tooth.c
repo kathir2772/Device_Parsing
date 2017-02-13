@@ -13,21 +13,10 @@ void *parse_bt(void *ptr)
 		//	printf("\n%s\n", (char *)ptr);
 	pthread_mutex_lock(&m1);
 	while(fgets(temp, 100, fp1) != NULL) {
-		if((strstr(temp, "BT  = ")) != NULL) {
-			fwrite(temp,1,strlen(temp)+1,fp2);
-			//printf("A match found on line: %d\n", line_num);
-			//printf("\n%s\n", temp);
-			//find_result++;
-			//line_num++;
-		}
-		line_num++;
+		if(strstr(temp, "BT  = ")) 
+			fwrite(temp,1,strlen(temp),fp2);
 	}
 	pthread_mutex_unlock(&m1);
 /*fclose(fp1);	*/
 fclose(fp2);	
 }
-/*
-int main(void)
-{
-	parse_bt();
-}*/

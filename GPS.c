@@ -12,22 +12,10 @@ void *parse_gps(void *ptr)
 	fp2 = fopen("gps_data.txt","a+");
 	pthread_mutex_lock(&m1);
 	while(fgets(temp, 150, fp1) != NULL) {
-		if((strstr(temp, "GPS")) != NULL) 
-			{//printf("_%s_%d\n",temp,strlen(temp));
-			fwrite(temp,1,strlen(temp)+1,fp2);
-			//printf("A match found on line: %d\n", line_num);
-			//printf("\n%s\n", temp);
-			//find_result++;
-			//line_num++;
-		}
-		line_num++;
+		if(strstr(temp, "GPS")) 
+			fwrite(temp,1,strlen(temp),fp2);
 	}
 	pthread_mutex_unlock(&m1);
 /*fclose(fp1);	*/
 fclose(fp2);	
 }
-/*
-int main(void)
-{
-	parse_gps();
-}*/

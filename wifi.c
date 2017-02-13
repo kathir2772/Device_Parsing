@@ -19,9 +19,14 @@ void *parse_wifi(void *ptr)
 	fp2 = fopen("common_data.txt","a+");
 	pthread_mutex_lock(&m1);
 	while(fgets(temp, 100, fp1) != NULL) {
+<<<<<<< HEAD
 		if(strstr(temp, "wifi = ")) 
 			fwrite(temp,1,strlen(temp),fp2);
 		
+=======
+		if(strstr(temp, "wifi = "))
+			fwrite(temp,1,strlen(temp),fp2);
+>>>>>>> 508fcf92881526150ca4ec5662c60ae931b09097
 	}
 	pthread_mutex_unlock(&m1);
 	semctl(sem_id, 0 , SETVAL ,0);

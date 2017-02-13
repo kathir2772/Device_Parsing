@@ -8,8 +8,9 @@ void *parse_wifi(void *ptr)
 	int find_result = 0;
 	char temp[100];
 	fp1 = fopen("data.txt","r");
-	fp2 = fopen(ptr,"a+");
-//	pthread_mutex_lock(&m1);
+	//fp2 = fopen(ptr,"a+");
+	fp2 = fopen("wifi_data.txt","a+");
+	pthread_mutex_lock(&m1);
 	while(fgets(temp, 100, fp1) != NULL) {
 		if((strstr(temp, "wifi = ")) != NULL) {
 			fwrite(temp,1,strlen(temp)+1,fp2);
@@ -20,9 +21,9 @@ void *parse_wifi(void *ptr)
 		}
 		line_num++;
 	}
-//	pthread_mutex_unlock(&m1);
-/*	fclose(fp1);
-	fclose(fp2);*/
+	pthread_mutex_unlock(&m1);
+/*	fclose(fp1);*/
+	fclose(fp2);
 }
 /*
 int main(void)

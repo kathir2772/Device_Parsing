@@ -8,7 +8,8 @@ void *parse_bt(void *ptr)
 	int find_result = 0;
 	char temp[100];
 	fp1 = fopen("data.txt","r");
-	fp2 = fopen((char *)ptr,"a+");
+	//fp2 = fopen((char *)ptr,"a+");
+	fp2 = fopen("bt_data.txt","a+");
 		//	printf("\n%s\n", (char *)ptr);
 	pthread_mutex_lock(&m1);
 	while(fgets(temp, 100, fp1) != NULL) {
@@ -22,8 +23,8 @@ void *parse_bt(void *ptr)
 		line_num++;
 	}
 	pthread_mutex_unlock(&m1);
-/*fclose(fp1);	
-fclose(fp2);	*/
+/*fclose(fp1);	*/
+fclose(fp2);	
 }
 /*
 int main(void)

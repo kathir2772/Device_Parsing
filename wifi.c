@@ -1,6 +1,10 @@
 #include"wifi.h"
 #include<string.h>
+#include<sys/sem.h>
 pthread_mutex_t m1;
+void semaphore_unlock(void);
+void semaphore_lock(void);
+extern sem_id;
 void *parse_wifi(void *ptr)
 {
 	FILE *fp1,*fp2;
@@ -9,24 +13,20 @@ void *parse_wifi(void *ptr)
 	char temp[100];
 	fp1 = fopen("data.txt","r");
 	//fp2 = fopen(ptr,"a+");
-	fp2 = fopen("wifi_data.txt","a+");
+	//fp2 = fopen("wifi_data.txt","a+");
+	semaphore_lock();
+
+	fp2 = fopen("common_data.txt","a+");
 	pthread_mutex_lock(&m1);
 	while(fgets(temp, 100, fp1) != NULL) {
-		if((strstr(temp, "wifi = ")) != NULL) {
-			fwrite(temp,1,strlen(temp)+1,fp2);
-			//printf("A match found on line: %d\n", line_num);
-			//printf("\n%s\n", temp);
-			//find_result++;
-			//line_num++;
-		}
-		line_num++;
+		if(strstr(temp, "wifi = ")) 
+			fwrite(temp,1,strlen(temp),fp2);
+		
 	}
 	pthread_mutex_unlock(&m1);
+	semctl(sem_id, 0 , SETVAL ,0);
+	semaphore_unlock();
+
 /*	fclose(fp1);*/
 	fclose(fp2);
 }
-/*
-int main(void)
-{
-	parse_wifi();
-}*/

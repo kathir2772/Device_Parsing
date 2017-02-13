@@ -8,10 +8,14 @@
 #include"Blue_tooth.h"
 #include"GPS_Header.h"
 #include"wifi.h"
+#include<sys/sem.h>
 
 pthread_t tid[3];
-extern pthread_mutex_t m1,m2,m3;
-void fork_call();
+extern pthread_mutex_t m1;
+void fork_call(void);
+void  semaphore_lock(void);
+void semaphore_unlock(void);
+int sem_id;
 
 int cnt = 0;
 
@@ -21,7 +25,7 @@ void usr_defned(int sig_num)
 
 }
 
-void fork_call()
+void fork_call(void)
 {
 	cnt++;
 	printf("\n fork_cnt ___%d\n",cnt);
@@ -46,8 +50,10 @@ void fork_call()
 		wait(&v);
 }
 
+
 int main(void)
 {
+	sem_id = semget((key_t)134, 2, 0666 | IPC_CREAT); 	
 	struct sigaction sa;
 
 	sa.sa_handler = usr_defned;
@@ -58,24 +64,34 @@ int main(void)
 	pthread_mutex_init(&m1,NULL);
 	while(1);
 
-	//int itr1=0,itr2,pid,pro;
-	//for(itr1=0;itr1<2;itr1++)
-	//{
-	//pid=fork();
-	//if(pid==0)
-	//	pro=0;
-	//else
-	//	pro=1;//wait
-
-//	for(itr2 = 0;itr2< 3;itr2++)
-	//sprintf(buf,"proc%d_%d.txt",itr1+1,pro);
-	//child process
-	//for(itr=0;itr<3;itr++)
-	  //      pthread_create( &tid[itr] , NULL , fp[itr] ,(void *)buf);
-
-//	}
-//
-
 
 }
-    	
+
+void  semaphore_lock(void)
+{
+	struct sembuf v;
+
+	v.sem_num = 0;
+	v.sem_op = -1;
+	v.sem_flg = SEM_UNDO;
+
+	if (semop(sem_id, &v, 1) == -1) {
+		perror("Thread1:semop failure Reason:");
+		exit(-1);
+	}
+
+}
+
+void semaphore_unlock(void)
+{
+	struct sembuf v;
+	v.sem_num = 0;
+	v.sem_op = 1;
+	v.sem_flg = SEM_UNDO;
+
+	if (semop(sem_id, &v, 1) == -1) {
+		perror("Thread1:semop failure Reason:");
+		exit(-1);
+	}
+}
+

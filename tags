@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+GMT	include/GPS_Header.h	/^	char GMT[10];$/;"	m	struct:gps_data
+INC	Makefile	/^INC = -I.\/include\/$/;"	m
+Lat	include/GPS_Header.h	/^	int Lat;$/;"	m	struct:gps_data
+Long	include/GPS_Header.h	/^	int Long;$/;"	m	struct:gps_data
+Name	include/Blue_tooth.h	/^	char Name[10];$/;"	m	struct:bt_data
+bt_data	include/Blue_tooth.h	/^struct bt_data$/;"	s
+device_id	include/Blue_tooth.h	/^	char device_id[10];$/;"	m	struct:bt_data
+gps_data	include/GPS_Header.h	/^struct gps_data$/;"	s
+main	main_fn.c	/^int main(void)$/;"	f
+parse_bt	Blue_tooth.c	/^void *parse_bt(void *ptr)$/;"	f
+parse_gps	GPS.c	/^void *parse_gps(void *ptr)$/;"	f
+parse_wifi	wifi.c	/^void *parse_wifi(void *ptr)$/;"	f
+speed	include/GPS_Header.h	/^	char speed[10];$/;"	m	struct:gps_data
+ssid	include/wifi.h	/^	char ssid[10];$/;"	m	struct:wifi_data
+status	include/wifi.h	/^	char status[10];$/;"	m	struct:wifi_data
+tid	main_fn.c	/^pthread_t tid[3];$/;"	v
+wifi_data	include/wifi.h	/^struct wifi_data$/;"	s

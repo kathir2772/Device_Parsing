@@ -1,18 +1,17 @@
-#include"Blue_tooth.h"
+#include"wifi.h"
 #include<string.h>
-pthread_mutex_t m1;
-void *parse_bt(void *ptr)
+pthread_mutex_t m[3];
+void *parse_wifi(void *ptr)
 {
 	FILE *fp1,*fp2;
 	int line_num = 1;
 	int find_result = 0;
 	char temp[100];
 	fp1 = fopen("data.txt","r");
-	fp2 = fopen((char *)ptr,"a+");
-		//	printf("\n%s\n", (char *)ptr);
-	pthread_mutex_lock(&m1);
+	fp2 = fopen("WIFI_data.txt","w");
+//	pthread_mutex_lock(&m[1]);
 	while(fgets(temp, 100, fp1) != NULL) {
-		if((strstr(temp, "BT  = ")) != NULL) {
+		if((strstr(temp, "wifi = ")) != NULL) {
 			fwrite(temp,1,strlen(temp)+1,fp2);
 			//printf("A match found on line: %d\n", line_num);
 			//printf("\n%s\n", temp);
@@ -21,12 +20,11 @@ void *parse_bt(void *ptr)
 		}
 		line_num++;
 	}
-	pthread_mutex_unlock(&m1);
-/*fclose(fp1);	
-fclose(fp2);	*/
+//	pthread_mutex_unlock(&m[2]);
+	
 }
 /*
 int main(void)
 {
-	parse_bt();
+	parse_wifi();
 }*/

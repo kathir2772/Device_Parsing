@@ -7,4 +7,4 @@ struct bt_data
 	char device_id[10];
 };
 
-void parse_bt();
+void *parse_bt(void *ptr);

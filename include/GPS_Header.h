@@ -8,4 +8,4 @@ struct gps_data
 	char speed[10];
 };
 
-void parse_gps();
+void *parse_gps(void *ptr);

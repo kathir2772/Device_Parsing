@@ -7,4 +7,4 @@ struct wifi_data
 	char status[10];
 };
 
-void parse_wifi();
+void *parse_wifi(void *ptr);

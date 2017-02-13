@@ -1,5 +1,6 @@
-GPS = Lat: -37.92499 Long: 145.21139 GMT: 10:26:53 speed: 56.51km/h
+GPS = Lat: -37.92499 Long: 145.21139speed: 56.51km/h
 BT  = Name: "Rajesh" DeviceID : b8:27:eb:39:1a:2f
 wifi = ssid:"MOTOG-3784" Status: "Active" 
-GPS = Lat: -37.92499 Long: 145.21139 GMT: 10:26:53 speed: 56.51km/h
-GPS = Lat: -37.92499 Long: 145.21139 GMT: 10:26:53 speed: 56.51km/h
+GPS = Lat: -38.92499 Long: 145.21139speed: 56.51km/h
+BT  = Name: "kathir" DeviceID : b8:27:eb:39:1a:2f
+wifi = ssid:"satish-3784" Status: "Active" 
